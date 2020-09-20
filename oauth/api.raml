@@ -1,0 +1,57 @@
+#%RAML 0.8
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/94008b26-a20b-4209-af8c-11c4100b211a/ # baseUri: https://heliosapi.server
+title: OAuth2
+version: 2
+documentation:
+  - title: Status
+    content: |
+      The v2 API is still being defined. This document currently defines the state and definition that are wanted for 
+  - title: Accessing an api
+    content: |
+      To gain access to some of the V2 API, the counsumer needs to supply .A api key and secret, along with granttype and scope . this will give him a token that is scoped for that particular proxy and locked to the developer app
+mediaType: application/json
+traits:
+   - userAuth:
+      headers:
+          Authorization:
+            displayName: Authorization
+            example: "Basic hiWF86mNeXQ0TtL8gh3lMPQ4H3cJ"
+            description: Value should be the base 64 value of client id and secret combination - base64(clientkey:secret)
+            type: string
+            required: true  
+      queryParameters:
+        grant_types:
+          required: true
+          type: string
+          description: Supported grant types 
+          example: client_credentials
+        scope:
+          required: true
+          type: string
+          description: scopes as per product configuration
+          example: Nissan-US_en-dark-inventory,admin 
+resourceTypes:
+  - base:
+      get?: &common
+        responses:
+          200:
+            description: Success!
+            body:
+              application/json:
+                schema: !include schemas/success.json
+                example: !include examples/success.json
+          401:
+            description: Invalid client key or secret
+            body:
+              application/json:
+                schema: !include schemas/error.json
+                example: !include examples/error401.json
+          400:
+            description: Missing mandatory parameters
+            body:
+              application/json:
+                schema: !include schemas/error.json
+                example: !include examples/error400.json
+         
+#Api's
+/v2/oauth: !include oauth.raml

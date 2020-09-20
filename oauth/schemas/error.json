@@ -1,0 +1,51 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"success": {
+			"type": "boolean",
+			"description": "If the response has been successful"
+		},
+		"code": {
+			"type": "integer",
+			"description": "The code defining why an error has occurred"
+		},
+		"message": {
+			"type": "string",
+			"description": "A message describing the error that occurred"
+		},
+		"fields": {
+			"type": "array",
+			"description": "A list of the fields that are involved in the error",
+			"items": {
+				"type": "object",
+				"properties": {
+					"fieldName": {
+						"type": "string",
+						"description": "The name of the field involved in the error"
+					},
+					"valid": {
+						"type": "boolean",
+						"description": "If the field is valid"
+					},
+					"errorMessage": {
+						"type": "string",
+						"description": "The reason the field is involved in the error"
+					}
+				},
+				"additionalProperties": false,
+				"required": [
+					"fieldName",
+					"valid",
+					"errorMessage"
+				]
+			}
+		}
+	},
+	"additionalProperties": false,
+	"required": [
+		"success",
+		"code",
+		"message"
+	]
+}

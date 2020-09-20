@@ -1,0 +1,12 @@
+displayName: Oauth2
+/token:
+ is: [userAuth]
+ type: base
+ get:
+   description: Returns the access token.
+   responses:
+    200:
+      body:
+        application/json:
+          example: !include examples/success.json
+          schema: !include schemas/success.json

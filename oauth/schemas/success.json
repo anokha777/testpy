@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "issued_at": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "expires_in": {
+      "type": "string"
+    },
+    "token_type": {
+      "type": "string"
+    },
+    "access_token": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "issued_at",
+    "scope",
+    "expires_in",
+    "token_type",
+    "access_token"
+  ]
+}
